@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Movie Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            max-width: 400px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            color: #e50914;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+        }
+
+        input[type="submit"] {
+            background-color: #e50914;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #b2070a;
+        }
+
+        h2 {
+            color: #e50914;
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        li {
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Movie Recommendation</h1>
+        <form method="POST" action="/recommend">
+            <label for="title">Movie Title:</label>
+            <input type="text" id="title" name="title" required>
+            <input type="submit" value="Get Recommendations">
+        </form>
+
+        {% if recommendations %}
+        <h2>Recommendations:</h2>
+        <ul>
+            {% for rec in recommendations %}
+            <li>
+                <strong>Title:</strong> {{ rec['title'] }}<br>
+                <strong>Score:</strong> {{ rec['score'] }}<br>
+                <strong>Genres:</strong> {{ rec['genres'] }}<br>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>
