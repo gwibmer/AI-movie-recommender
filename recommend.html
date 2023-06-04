@@ -3,92 +3,123 @@
 
 <head>
     <title>Movie Recommendation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        html,
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
             margin: 0;
             padding: 0;
-            background-color: #000;
-            background-image: url('background.jpg');
-            background-size: cover;
+            height: 100%;
+            background-color: #141414;
+            background-image: url('path-to-your-netflix-logo');
+            background-repeat: no-repeat;
+            background-size: 50%;
             background-position: center;
+            animation: fadeIn 2s ease-in-out 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
-            max-width: 400px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 500px;
+            padding: 2em;
+            background: rgba(0, 0, 0, .75);
+            box-shadow: 0px 1px 5px rgba(0, 0, 0, .7);
+            border-radius: 10px;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         h1 {
+            color: #E50914;
+            font-size: 2.5rem;
+            font-weight: 700;
             text-align: center;
-            color: #e50914;
-            margin-bottom: 20px;
-            font-size: 28px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 1em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, .8);
         }
 
         form {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-gap: 1.5em;
         }
 
         label {
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #fff;
+            font-weight: 600;
         }
 
         input[type="text"] {
-            padding: 10px;
-            font-size: 16px;
+            padding: 0.5em;
+            font-size: 1rem;
             border: none;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #000;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
         }
 
         input[type="submit"] {
-            background-color: #e50914;
-            color: #fff;
-            padding: 10px 20px;
+            padding: 0.75em;
+            font-size: 1.25rem;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 5px;
+            background: #E50914;
+            color: #fff;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
         input[type="submit"]:hover {
-            background-color: #b2070a;
+            background: #b20710;
         }
 
         h2 {
-            color: #e50914;
-            margin-top: 20px;
-            font-size: 20px;
+            color: #E50914;
+            font-size: 2rem;
+            font-weight: 700;
             text-align: center;
+            margin-top: 2em;
         }
 
         ul {
-            padding: 0;
-            list-style-type: none;
+            list-style: none;
+            padding-left: 0;
         }
 
         li {
-            margin-bottom: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            padding: 10px;
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #000;
+            background: rgba(255, 255, 255, .1);
+            padding: 1em;
+            border-radius: 5px;
+            margin-bottom: 1em;
+            border-left: 5px solid #E50914;
         }
 
         strong {
-            font-weight: bold;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .recommendations {
+            max-height: 400px;
+            /* Set this to the maximum height you want */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+            padding-right: 1em;
+            /* Additional padding to accommodate scrollbar */
         }
     </style>
 </head>
@@ -102,17 +133,20 @@
             <input type="submit" value="Get Recommendations">
         </form>
 
+
         {% if recommendations %}
         <h2>Recommendations:</h2>
-        <ul>
-            {% for rec in recommendations %}
-            <li>
-                <strong>Title:</strong> {{ rec['title'] }}<br>
-                <strong>Score:</strong> {{ rec['score'] }}<br>
-                <strong>Genres:</strong> {{ rec['genres'] }}<br>
-            </li>
-            {% endfor %}
-        </ul>
+        <div class="recommendations">
+            <ul>
+                {% for rec in recommendations %}
+                <li>
+                    <strong>Title:</strong> {{ rec['title'] }}<br>
+                    <strong>Score:</strong> {{ rec['score'] }}<br>
+                    <strong>Genres:</strong> {{ rec['genres'] }}<br>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endif %}
     </div>
 </body>
