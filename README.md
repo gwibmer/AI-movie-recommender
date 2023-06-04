@@ -1,6 +1,6 @@
 # Movie Recommendation System
 
-![Movie Recommender](movie.png)
+![Movie Recommender](reccomend.png)
 
 This is a movie recommendation system implemented as a web application using Flask. The system suggests movies to users based on similarity scores and user ratings.
 
